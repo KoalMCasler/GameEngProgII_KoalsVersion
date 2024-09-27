@@ -123,14 +123,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5229660304388144660}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadMainMenuScene
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &538459271810326350
@@ -2596,13 +2596,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7610662636063386007}
+  - component: {fileID: 2527351382280109504}
   m_Layer: 5
   m_Name: UI_LoadingScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7610662636063386007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2623,6 +2624,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2527351382280109504
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265101292150682485}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4377508156643466147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,7 +2840,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2878,16 +2891,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74205c44aa72a3e48b7a0ae77d99b492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  levelManager: {fileID: 5229660304388144660}
   mainMenuUI: {fileID: 5807448802139555805}
   gamePlayUI: {fileID: 616959208050697347}
   gameOverUI: {fileID: 8499861076685850264}
   pauseMenuUI: {fileID: 2040632395625054012}
   optionsMenuUI: {fileID: 5276374253321484129}
   creditsMenuUI: {fileID: 4885769366543676978}
-  loadingScreenUI: {fileID: 0}
+  LoadingScreen: {fileID: 4265101292150682485}
   LevelCount: {fileID: 5077827594024587273}
-  loadingBar: {fileID: 0}
+  loadingScreenCanvasGroup: {fileID: 2527351382280109504}
+  loadingBar: {fileID: 7075458766156946317}
+  loadingText: {fileID: 1972205055757508883}
+  fadeTime: 1
 --- !u!1 &4519553158357465362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,14 +3145,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5229660304388144660}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadNextlevel
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TestLevel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5276374253321484129
@@ -4794,14 +4810,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5229660304388144660}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ReloadCurrentScene
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TestLevel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &7984232313636649501
