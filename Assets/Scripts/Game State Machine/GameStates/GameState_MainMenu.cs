@@ -15,7 +15,7 @@ public class GameState_MainMenu : IGameState
 
         gameStateManager._uIManager.UIMainMenu();
         gameStateManager._playerManager.player.SetActive(false);
-        gameStateManager._cameraManager.playerCamera.enabled = false;
+        //gameStateManager._cameraManager.playerCamera.enabled = false;
         gameStateManager._cameraManager.isCameraMoveEnabled = false;
 
         
