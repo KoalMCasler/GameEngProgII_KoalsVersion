@@ -120,7 +120,7 @@ public class UIManager : MonoBehaviour
 
         loadingScreenCanvasGroup.alpha = 0;
         LoadingScreen.SetActive(false);
-
+        loadingBar.fillAmount = 0;
         Debug.Log("Ending Fadeout");
     }
 
