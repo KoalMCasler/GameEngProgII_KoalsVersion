@@ -41,8 +41,7 @@ public class LevelManager : MonoBehaviour
         LoadScene(nextScene);
         _gameStateManager.SwitchToState(_gameStateManager.gameState_GamePlay);       
     }
-
-
+    
     public void LoadMainMenuScene()
     {
         LoadScene(0);
@@ -54,12 +53,17 @@ public class LevelManager : MonoBehaviour
         LoadScene(SceneManager.GetActiveScene().buildIndex);
         _gameStateManager.SwitchToState(_gameStateManager.gameState_GamePlay);
     }
-
+    /// <summary>
+    /// Quits game
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
     }
-
+    /// <summary>
+    /// Loads scene based on string, Loading screen loads here. 
+    /// </summary>
+    /// <param name="sceneName"></param>
     public void LoadScene(string sceneName)
     {
         switch (sceneName)
@@ -82,7 +86,11 @@ public class LevelManager : MonoBehaviour
 
         StartCoroutine(WaitForScreenLoad(sceneName));   
     }
-
+    /// <summary>
+    /// Waits for screen to oad before starting operation. 
+    /// </summary>
+    /// <param name="sceneName"></param>
+    /// <returns></returns>
     private IEnumerator WaitForScreenLoad(string sceneName)
     {
         yield return new WaitForSeconds(_uIManager.fadeTime);
@@ -92,7 +100,10 @@ public class LevelManager : MonoBehaviour
         operation.completed += OperationCompleted;
         scenesToLoad.Add(operation);
     }
-
+    /// <summary>
+    /// Gets average progress for Loading bar. 
+    /// </summary>
+    /// <returns></returns>
     public float GetLoadingProgress()
     {
         float totalprogress = 0;
@@ -104,7 +115,10 @@ public class LevelManager : MonoBehaviour
 
         return totalprogress / scenesToLoad.Count;
     }
-
+    /// <summary>
+    /// Event for when load operation is finished. 
+    /// </summary>
+    /// <param name="operation"></param>
     private void OperationCompleted(AsyncOperation operation)
     {
         scenesToLoad.Remove(operation);
