@@ -1,5 +1,5 @@
-﻿using UnityEditor.Build.Content;
-using UnityEditor.SearchService;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,8 +18,7 @@ public class LevelManager : MonoBehaviour
 
 
     public int nextScene;
-    public AsyncOperation sceneLoad;
-
+    public List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
     public void Awake()
     {
@@ -66,46 +65,51 @@ public class LevelManager : MonoBehaviour
         switch (sceneName)
         {
             case "MainMenu":
-                _uIManager.UILoadingScreen();
+                _uIManager.UILoadingScreen(_uIManager.mainMenuUI);
                 _gameStateManager.SwitchToState(_gameStateManager.gameState_GameInit);
                 break;
-    
+
             case "TestLevel":
-                _uIManager.UILoadingScreen();
+                _uIManager.UILoadingScreen(_uIManager.gamePlayUI);
                 _gameStateManager.SwitchToState(_gameStateManager.gameState_GamePlay);
                 break;
-    
+
             default:
                 sceneName = "MainMenu";
-                _uIManager.UILoadingScreen();
+                _uIManager.UILoadingScreen(_uIManager.mainMenuUI);
                 break;
         }
-        StartSceneLoad(sceneName);
-    
+
+        StartCoroutine(WaitForScreenLoad(sceneName));   
     }
 
-    private void StartSceneLoad(string sceneName)
+    private IEnumerator WaitForScreenLoad(string sceneName)
     {
-        sceneLoad = SceneManager.LoadSceneAsync(sceneName);
-        sceneLoad.completed += OperationComplete;
+        yield return new WaitForSeconds(_uIManager.fadeTime);
+        Debug.Log("Loading Scene Starting");
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.completed += OperationCompleted;
+        scenesToLoad.Add(operation);
     }
 
     public float GetLoadingProgress()
     {
-        return sceneLoad.progress;
+        float totalprogress = 0;
+
+        foreach (AsyncOperation operation in scenesToLoad)
+        {
+            totalprogress += operation.progress;
+        }
+
+        return totalprogress / scenesToLoad.Count;
     }
 
-    private void OperationComplete(AsyncOperation operation)
+    private void OperationCompleted(AsyncOperation operation)
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
-        {
-            _uIManager.DisableLoadScreen(_uIManager.mainMenuUI);
-        }
-        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TestLevel"))
-        {
-            _uIManager.DisableLoadScreen(_uIManager.gamePlayUI);
-        }
+        scenesToLoad.Remove(operation);
     }
+
 }
 
 
