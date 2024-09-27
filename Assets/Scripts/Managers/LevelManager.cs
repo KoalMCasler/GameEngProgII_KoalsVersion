@@ -1,4 +1,5 @@
-﻿using UnityEditor.SearchService;
+﻿using UnityEditor.Build.Content;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ public class LevelManager : MonoBehaviour
 
 
     public int nextScene;
+    public AsyncOperation sceneLoad;
 
 
     public void Awake()
@@ -59,8 +61,51 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void LoadScene(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "MainMenu":
+                _uIManager.UILoadingScreen();
+                _gameStateManager.SwitchToState(_gameStateManager.gameState_GameInit);
+                break;
+    
+            case "TestLevel":
+                _uIManager.UILoadingScreen();
+                _gameStateManager.SwitchToState(_gameStateManager.gameState_GamePlay);
+                break;
+    
+            default:
+                sceneName = "MainMenu";
+                _uIManager.UILoadingScreen();
+                break;
+        }
+        StartSceneLoad(sceneName);
+    
+    }
 
+    private void StartSceneLoad(string sceneName)
+    {
+        sceneLoad = SceneManager.LoadSceneAsync(sceneName);
+        sceneLoad.completed += OperationComplete;
+    }
 
+    public float GetLoadingProgress()
+    {
+        return sceneLoad.progress;
+    }
+
+    private void OperationComplete(AsyncOperation operation)
+    {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            _uIManager.DisableLoadScreen(_uIManager.mainMenuUI);
+        }
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TestLevel"))
+        {
+            _uIManager.DisableLoadScreen(_uIManager.gamePlayUI);
+        }
+    }
 }
 
 

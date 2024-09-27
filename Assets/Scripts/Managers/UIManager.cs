@@ -9,7 +9,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {    
 
-
+    public LevelManager levelManager;
     // References to UI Panels
     public GameObject mainMenuUI;
     public GameObject gamePlayUI;
@@ -17,10 +17,12 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
     public GameObject creditsMenuUI;
+    public GameObject loadingScreenUI;
 
 
     // Gameplay Specific UI Elements
     public Text LevelCount;
+    public Image loadingBar;
 
     public void UpdateLevelCount(int count)
     {
@@ -69,6 +71,31 @@ public class UIManager : MonoBehaviour
         creditsMenuUI.SetActive(true);
     }
 
+    public void DisableLoadScreen(GameObject targetUI)
+    {
+        DisableAllUIPanels();
+        loadingScreenUI.SetActive(false);
+        if (targetUI == gamePlayUI)
+        {
+            gamePlayUI.SetActive(true);
+        }
+        else if (targetUI == mainMenuUI)
+        {
+            mainMenuUI.SetActive(true);
+        }
+    }
+
+    public void UILoadingScreen()
+    {
+        DisableAllUIPanels();
+        loadingScreenUI.SetActive(true);
+    
+        /*
+        StartCoroutine(LoadingUIFadeIN());
+        StartCoroutine(DelayedSwitchUIPanel(fadeTime, targetPanel));
+        */
+    }
+
 
     public void DisableAllUIPanels()
     {
@@ -90,6 +117,15 @@ public class UIManager : MonoBehaviour
         creditsMenuUI.SetActive(false);
     }
 
+    private IEnumerator LoadingBarProgress()
+    {
+
+        while (!levelManager.sceneLoad.isDone)
+        {
+            loadingBar.fillAmount = levelManager.GetLoadingProgress();
+            yield return null;
+        }
+    }
 
 
 }
