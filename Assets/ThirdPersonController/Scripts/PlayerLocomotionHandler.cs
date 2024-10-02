@@ -26,6 +26,10 @@ public class PlayerLocomotionHandler : MonoBehaviour
     public float gravity = -30f; // Gravity value to apply to the player
     public float jumpHeight = 3.0f; // Jump height
 
+    [Header("Animator")]
+
+    public Animator playerAnim;
+
     private Vector3 moveDirection;
     private Vector3 velocity;
     private bool isJumping = false; // Track if player is currently jumping
@@ -59,14 +63,21 @@ public class PlayerLocomotionHandler : MonoBehaviour
             if (isSprinting)
             {
                 moveDirection *= sprintingSpeed;
+                playerAnim.SetFloat("Velocity", 2); //Used to set character to running anim
             }
             else if (inputManager.moveAmount >= 0.5f)
             {
                 moveDirection *= joggingSpeed;
+                playerAnim.SetFloat("Velocity", 1.5f); //Used to set character halfway between running and walking anim
             }
             else
             {
+                playerAnim.SetFloat("Velocity", 1); // Used to set player to walking anim
                 moveDirection *= walkingSpeed;
+            }
+            if(moveDirection == Vector3.zero)
+            {
+                playerAnim.SetFloat("Velocity", 0); // used to set player to idle anim
             }
 
             // Apply gravity
