@@ -1522,6 +1522,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5697578372536420906, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
+      propertyPath: inputActionAsset
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 756f2453075c5404c96bcc4a30b899d9,
+        type: 3}
+    - target: {fileID: 5697578372536420906, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
       propertyPath: isPauseKeyPressed
       value: 1
       objectReference: {fileID: 0}

@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
     private InputAction playerJump;
     private InputAction playerSprint;
     public KoalsVersion playerInputScript;
+    public InputActionAsset inputActionAsset;
 
     [Header("Camera Inputs")]
     public float scrollInput; // Scroll input for camera zoom
@@ -41,6 +42,11 @@ public class InputManager : MonoBehaviour
         HandleJumpInput();
         HandleCameraInput();
         HandlePauseKeyInput();
+    }
+
+    public void Update()
+    {
+        CheckInputType();
     }
 
     void OnDisabled()
@@ -105,5 +111,20 @@ public class InputManager : MonoBehaviour
             playerLocomotionHandler.HandleJump(); // Trigger jump in locomotion handler
         }
     }
+
+    void CheckInputType()
+    {
+        foreach (InputDevice device in inputActionAsset.devices)
+        {
+            if (device is Mouse || device is Keyboard)
+            {
+                Debug.Log("Mouse/Keyboard is active");
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Mouse/Keyboard is active");
+            }
+        }   
+    }  
 
 }
