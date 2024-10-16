@@ -395,6 +395,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &453812923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 725711720319384260, guid: e778663d324e19a48ab9d91fcd9af8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2384008851326326069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85490debf802314b9604b0f3f34c174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &516345878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1701,44 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 390946156}
+    - targetCorrespondingSourceObject: {fileID: 7034935583075056663, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 2384008851326326072}
   m_SourcePrefab: {fileID: 100100000, guid: e778663d324e19a48ab9d91fcd9af8f9, type: 3}
+--- !u!1 &2384008851326326070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7034935583075056663, guid: e778663d324e19a48ab9d91fcd9af8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2384008851326326069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2384008851326326071 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7852501862026054370, guid: e778663d324e19a48ab9d91fcd9af8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2384008851326326069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2384008851326326072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384008851326326070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffba9b1b4c7db174f95a5b7e8401480f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraManager: {fileID: 453812923}
+  playerCam: {fileID: 2384008851326326071}
+  cubeFilter:
+    serializedVersion: 2
+    m_Bits: 8
+  groundFilter:
+    serializedVersion: 2
+    m_Bits: 128
+  maxRayDistance: 50
 --- !u!95 &5866666020944545410 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6374676480864595883, guid: e778663d324e19a48ab9d91fcd9af8f9,

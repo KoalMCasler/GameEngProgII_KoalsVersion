@@ -118,11 +118,11 @@ public class InputManager : MonoBehaviour
         {
             if (device is Mouse || device is Keyboard)
             {
-                Debug.Log("Mouse/Keyboard is active");
+                //Debug.Log("Mouse/Keyboard is active");
             }
             else if (device is Gamepad)
             {
-                Debug.Log("Mouse/Keyboard is active");
+                //Debug.Log("Mouse/Keyboard is active");
             }
         }   
     }  
