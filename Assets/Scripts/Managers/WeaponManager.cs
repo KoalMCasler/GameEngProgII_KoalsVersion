@@ -33,22 +33,22 @@ public class WeaponManager : MonoBehaviour
         //     }
         // }
         //float distance = 10f;
-        if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out RaycastHit hit, maxRayDistance, cubeFilter.value))
-        {
-            hitFlag = true;
-            if(hit.collider.TryGetComponent(out Renderer renderer))
-            {
-                cubeRenderer = renderer;
-                cubeRenderer.material.color = Color.red;
-                Debug.Log("Looking at " + hit.collider.name + " Current color is " + cubeRenderer.material.color + " Current position is " + hit.collider.transform.position);
-            }
-        }
-        else if(hitFlag)
-        {
-            hitFlag = false;
-            cubeRenderer.material.color = Color.blue;
-            cubeRenderer = null;
-        }
+        // if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out RaycastHit hit, maxRayDistance, cubeFilter.value))
+        // {
+        //     hitFlag = true;
+        //     if(hit.collider.TryGetComponent(out Renderer renderer))
+        //     {
+        //         cubeRenderer = renderer;
+        //         cubeRenderer.material.color = Color.red;
+        //         Debug.Log("Looking at " + hit.collider.name + " Current color is " + cubeRenderer.material.color + " Current position is " + hit.collider.transform.position);
+        //     }
+        // }
+        // else if(hitFlag)
+        // {
+        //     hitFlag = false;
+        //     cubeRenderer.material.color = Color.blue;
+        //     cubeRenderer = null;
+        // }
 
         // RaycastHit[] hits = Physics.RaycastAll(playerCam.transform.position,playerCam.transform.forward, distance, cubeFilter.value);
         // foreach(RaycastHit raycastHit in hits)
@@ -57,9 +57,43 @@ public class WeaponManager : MonoBehaviour
         //     {
         //         renderer.material.color = Color.red;
         //         Debug.Log("Looking at " + hit.collider.name + " Current color is " + renderer.material.color + " Current position is " + raycastHit.collider.transform.position);
-        //     }
+        //    }
 
-        //     //Debug.Log("Total hits = " + hits.Length);
+        //    Debug.Log("Total hits = " + hits.Length);
         // }
+        float distance = 10f;
+        if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out RaycastHit hit, maxRayDistance, groundFilter.value))
+        {
+            distance = hit.distance;
+        }
+        RaycastHit[] hits = Physics.RaycastAll(playerCam.transform.position,playerCam.transform.forward, distance, cubeFilter.value);
+        foreach(RaycastHit raycastHit in hits)
+        {
+            if(raycastHit.collider.TryGetComponent(out Renderer renderer))
+            {
+                cubeRenderer = renderer;
+                if(Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, maxRayDistance, cubeFilter.value))
+                {
+                    hitFlag = true;
+                    //Debug.Log("Looking at " + hit.collider.name);
+                }
+                else if(hitFlag)
+                {
+                    hitFlag = false;
+                }
+                //Debug.Log("Total hits = " + hits.Length);
+            }
+        }
+        if(cubeRenderer != null)
+        {
+            if(hitFlag )
+            {
+                cubeRenderer.material.color = Color.red;
+            }
+            else
+            {
+                cubeRenderer.material.color = Color.blue;
+            }
+        }
     }
 }
