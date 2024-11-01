@@ -1693,6 +1693,11 @@ PrefabInstance:
       propertyPath: playerMovement.m_SingletonActionBindings.Array.data[4].m_Action
       value: Player Movement
       objectReference: {fileID: 0}
+    - target: {fileID: 7034935583075056663, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
