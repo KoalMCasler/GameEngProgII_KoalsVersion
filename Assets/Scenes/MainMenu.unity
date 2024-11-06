@@ -1284,6 +1284,18 @@ Transform:
   - {fileID: 410087041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767624681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7080073777982698874, guid: e778663d324e19a48ab9d91fcd9af8f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2384008851326326069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1823075194
 Mesh:
   m_ObjectHideFlags: 0
@@ -1462,6 +1474,11 @@ PrefabInstance:
       propertyPath: fadeTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 393610008284620649, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: GameplayMessage
+      value: 
+      objectReference: {fileID: 1767624681}
     - target: {fileID: 515732063566655833, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
       propertyPath: playerAnim
@@ -1710,6 +1727,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 3
       addedObject: {fileID: 2384008851326326072}
+    - targetCorrespondingSourceObject: {fileID: 7034935583075056663, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2384008851326326080}
   m_SourcePrefab: {fileID: 100100000, guid: e778663d324e19a48ab9d91fcd9af8f9, type: 3}
 --- !u!1 &2384008851326326070 stripped
 GameObject:
@@ -1730,7 +1751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2384008851326326070}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffba9b1b4c7db174f95a5b7e8401480f, type: 3}
   m_Name: 
@@ -1744,6 +1765,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxRayDistance: 50
+--- !u!114 &2384008851326326080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384008851326326070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab12fbe534c262849bfa56080bad9117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIManager: {fileID: 0}
+  cameraManager: {fileID: 0}
+  playerCam: {fileID: 0}
+  maxRayDistance: 10
+  target: {fileID: 0}
+  interactionPossible: 0
 --- !u!95 &5866666020944545410 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6374676480864595883, guid: e778663d324e19a48ab9d91fcd9af8f9,

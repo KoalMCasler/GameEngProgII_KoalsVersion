@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "GameEngProgII_KoalsVersion.sln"
+    "dotnet.defaultSolution": "GameEngProgII_KoalsVersion.sln",
+    "dotnet.preferCSharpExtension": true
 }

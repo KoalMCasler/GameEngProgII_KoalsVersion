@@ -25,8 +25,10 @@ public class InputManager : MonoBehaviour
     private InputAction playerLook;
     private InputAction playerJump;
     private InputAction playerSprint;
+    private InputAction playerFire;
     public KoalsVersion playerInputScript;
     public InputActionAsset inputActionAsset;
+    public InteractionManager interactionManager;
 
     [Header("Camera Inputs")]
     public float scrollInput; // Scroll input for camera zoom
@@ -42,6 +44,7 @@ public class InputManager : MonoBehaviour
         HandleJumpInput();
         HandleCameraInput();
         HandlePauseKeyInput();
+        HandleInteractionInput(); //NEW
     }
 
     public void Update()
@@ -56,12 +59,22 @@ public class InputManager : MonoBehaviour
 
     void OnEnable()
     {
+        interactionManager = FindObjectOfType<InteractionManager>(); //NEW
         playerInputScript = new KoalsVersion();
         playerMove = playerInputScript.Player.Move;
         playerLook = playerInputScript.Player.Look;
         playerJump = playerInputScript.Player.Jump;
         playerSprint = playerInputScript.Player.Sprint;
+        playerFire = playerInputScript.Player.Fire; //NEW
         playerInputScript.Enable();
+    }
+
+    private void HandleInteractionInput() //NEW
+    {
+        if(playerFire.IsPressed() && interactionManager.interactionPossible)
+        {
+            interactionManager.Interact();
+        }
     }
 
     private void HandleCameraInput()
