@@ -15,6 +15,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField]
     private GameObject target;
     private Interactable targetInteractable;
+    private Outline targetOutline;
     public int pickupCout;
     // Start is called before the first frame update
     void Awake()
@@ -29,10 +30,16 @@ public class InteractionManager : MonoBehaviour
         if(target != null)
         {
             interactionPosible = true;
+            targetOutline.enabled = true;
+        }
+        else if(targetOutline != null)
+        {
+            targetOutline.enabled = false;
         }
         else
         {
             interactionPosible = false;
+            
         }
         uIManager.UpdatePickupUI(string.Format("Coins = {0}",pickupCout));
     }
@@ -46,6 +53,7 @@ public class InteractionManager : MonoBehaviour
                 //Debug.Log("Looking at " + hit.transform.gameObject.name);
                 target = hit.transform.gameObject;
                 targetInteractable = target.GetComponent<Interactable>();
+                targetOutline = target.GetComponent<Outline>();
                 SetGameplayMessage();
             }
             else
