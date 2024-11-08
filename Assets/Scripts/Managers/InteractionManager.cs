@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    public UIManager uIManager;
     public CameraManager cameraManager;
     public Camera playerCam;
+    [Range(0,100)]
     public int maxRayDistance;
+    public LayerMask cubeFilter;
+    public UIManager uIManager;
+    public bool interactionPosible;
     [SerializeField]
     private GameObject target;
     private Interactable targetInteractable;
-    public bool interactionPossible;
-
+    public int pickupCout;
+    // Start is called before the first frame update
     void Awake()
     {
-        uIManager = FindObjectOfType<UIManager>();
-        cameraManager = FindObjectOfType<CameraManager>();
         playerCam = cameraManager.playerCamera;
+        pickupCout = 0;
     }
 
     // Update is called once per frame
@@ -26,14 +28,14 @@ public class InteractionManager : MonoBehaviour
     {
         if(target != null)
         {
-            interactionPossible = true;
+            interactionPosible = true;
         }
         else
         {
-            interactionPossible = false;
+            interactionPosible = false;
         }
+        uIManager.UpdatePickupUI(string.Format("Coins = {0}",pickupCout));
     }
-
     void FixedUpdate()
     {
         Debug.DrawLine(playerCam.transform.position, playerCam.transform.position + playerCam.transform.forward*maxRayDistance);
@@ -41,17 +43,25 @@ public class InteractionManager : MonoBehaviour
         {
             if(hit.transform.gameObject.CompareTag("Interactable"))
             {
-                Debug.Log("Looking at " + hit.transform.gameObject.name);
+                //Debug.Log("Looking at " + hit.transform.gameObject.name);
                 target = hit.transform.gameObject;
                 targetInteractable = target.GetComponent<Interactable>();
+                SetGameplayMessage();
+            }
+            else
+            {
+                target = null;
+                targetInteractable = null;
+                SetGameplayMessage();
             }
         }
         else
         {
             target = null;
             targetInteractable = null;
+            SetGameplayMessage();
         }
-        SetGameplayMessage();
+        
     }
 
     public void Interact()
@@ -59,32 +69,39 @@ public class InteractionManager : MonoBehaviour
         switch(targetInteractable.type)
         {
             case Interactable.InteractionType.Door:
-                target.SetActive(false);
-                break;
-            case Interactable.InteractionType.Button:
+                targetInteractable.Activate();
+                target.SetActive(false);   
                 break;
             case Interactable.InteractionType.Pickup:
+                targetInteractable.Activate();
+                pickupCout ++;
+                target.SetActive(false); 
+                break;
+            case Interactable.InteractionType.Button:
+                targetInteractable.Activate();
                 break;
         }
-        targetInteractable.Activate();
     }
 
     void SetGameplayMessage()
     {
         string message = "";
-        if(target != null)
+        if(target!= null)
         {
             switch(targetInteractable.type)
             {
                 case Interactable.InteractionType.Door:
                     message = "Press LMB to open door";
                     break;
-                case Interactable.InteractionType.Button:
-                    break;
                 case Interactable.InteractionType.Pickup:
+                    message = "Press LMB to pickup";
+                    break;
+                case Interactable.InteractionType.Button:
+                    message = "Press LMB to activate";
                     break;
             }
         }
         uIManager.UpdateGameplayMessage(message);
+        
     }
 }

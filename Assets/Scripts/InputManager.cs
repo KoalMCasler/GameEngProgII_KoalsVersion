@@ -20,12 +20,11 @@ public class InputManager : MonoBehaviour
     public bool jumpInput;
     public Vector2 movementInput;
     public float moveAmount;
-
+    private InputAction playerFire;
     private InputAction playerMove;
     private InputAction playerLook;
     private InputAction playerJump;
     private InputAction playerSprint;
-    private InputAction playerFire;
     public KoalsVersion playerInputScript;
     public InputActionAsset inputActionAsset;
     public InteractionManager interactionManager;
@@ -44,7 +43,7 @@ public class InputManager : MonoBehaviour
         HandleJumpInput();
         HandleCameraInput();
         HandlePauseKeyInput();
-        HandleInteractionInput(); //NEW
+        HandleInteractionInput();
     }
 
     public void Update()
@@ -59,22 +58,13 @@ public class InputManager : MonoBehaviour
 
     void OnEnable()
     {
-        interactionManager = FindObjectOfType<InteractionManager>(); //NEW
         playerInputScript = new KoalsVersion();
         playerMove = playerInputScript.Player.Move;
         playerLook = playerInputScript.Player.Look;
         playerJump = playerInputScript.Player.Jump;
         playerSprint = playerInputScript.Player.Sprint;
-        playerFire = playerInputScript.Player.Fire; //NEW
+        playerFire = playerInputScript.Player.Fire;
         playerInputScript.Enable();
-    }
-
-    private void HandleInteractionInput() //NEW
-    {
-        if(playerFire.IsPressed() && interactionManager.interactionPossible)
-        {
-            interactionManager.Interact();
-        }
     }
 
     private void HandleCameraInput()
@@ -97,6 +87,14 @@ public class InputManager : MonoBehaviour
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
+    }
+
+    private void HandleInteractionInput()
+    {
+        if(playerFire.IsPressed() && interactionManager.interactionPosible)
+        {
+            interactionManager.Interact();
+        }
     }
 
     private void HandlePauseKeyInput()

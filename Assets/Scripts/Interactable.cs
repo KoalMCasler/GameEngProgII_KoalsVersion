@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public enum InteractionType{Door, Button, Pickup}
 
+    public enum InteractionType{Door, Button, Pickup}
     public InteractionType type;
 
     public void Activate()
