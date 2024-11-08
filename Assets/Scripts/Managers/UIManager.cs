@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     // Gameplay Specific UI Elements
     public Text LevelCount;
     public Text gameplayMessage;
+    public Text pickupCout;
 
     [Header("Loading Screen UI Elements")]
     public CanvasGroup loadingScreenCanvasGroup;
@@ -206,5 +207,10 @@ public class UIManager : MonoBehaviour
     public void UpdateGameplayMessage(string message)
     {
         gameplayMessage.text = message;
+    }
+
+    public void UpdatePickupUI(string message)
+    {
+        pickupCout.text = message;
     }
 }
