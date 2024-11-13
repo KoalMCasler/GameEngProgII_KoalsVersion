@@ -7,9 +7,16 @@ public class Interactable : MonoBehaviour
 
     public enum InteractionType{Door, Button, Pickup}
     public InteractionType type;
-
+    public PickupScritable pickup;
     public void Activate()
     {
-        Debug.Log(this.name + " was actiavted");
+        if(type != InteractionType.Pickup)
+        {
+            Debug.Log(this.name + " was actiavted");
+        }
+        else
+        {
+            pickup.ShowName();
+        }
     }
 }

@@ -1513,6 +1513,12 @@ PrefabInstance:
       propertyPath: playerAnim
       value: 
       objectReference: {fileID: 5866666020944545410}
+    - target: {fileID: 515732063566655833, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: b317582d0bda70c45816e80bb0cdb7ff,
+        type: 2}
     - target: {fileID: 616959208050697347, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
       propertyPath: m_IsActive

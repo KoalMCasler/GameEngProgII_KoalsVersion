@@ -7,6 +7,7 @@ using UnityEngine;
 // This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 public class PlayerLocomotionHandler : MonoBehaviour
 {
+    public CharStats playerStats;
     [SerializeField] private InputManager inputManager;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private CharacterController characterController;
@@ -38,6 +39,14 @@ public class PlayerLocomotionHandler : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            playerStats.ShowName();
+        }
     }
 
     public void HandleAllPlayerMovement()
