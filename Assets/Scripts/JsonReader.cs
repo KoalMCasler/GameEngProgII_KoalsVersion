@@ -53,6 +53,19 @@ public class JsonReader : MonoBehaviour
         }
     }
 
+    public void SwapLanguage()
+    {
+        if(currentLanguage == fr)
+        {
+            currentLanguage = en;
+        }
+        else if(currentLanguage == en)
+        {
+            currentLanguage = fr;
+        }
+        SetLanguage(currentLanguage);
+    }
+
     // Update is called once per frame
     void Update()
     {
